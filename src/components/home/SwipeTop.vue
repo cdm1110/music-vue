@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { getSwipeTopData } from '@/api/interfaces'
+import { getSwipeTopData } from '@/api/home/interfaces'
 import { ref } from 'vue'
 
 const SwipeTopList = ref([])
@@ -32,12 +32,13 @@ console.log(SwipeTopList.value)
 #SwipeTop {
   .van-swipe {
     width: 100%;
-    height: 4rem;
+    height: 3.5rem;
     .van-swipe-item {
       padding: 0 0.2rem;
       img {
         width: 100%;
-        height: 4rem;
+        height: 100%;
+        border-radius: 0.2rem;
       }
     }
     .van-swipe__indicator--active {

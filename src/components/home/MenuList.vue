@@ -33,7 +33,7 @@
 .MenuList {
   width: 100%;
   height: 1.8rem;
-  padding: 0.2rem;
+  padding: 0 0.2rem;
   padding-bottom: 0.1rem;
   display: flex;
   justify-content: space-between;
