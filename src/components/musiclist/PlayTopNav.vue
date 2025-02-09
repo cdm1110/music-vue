@@ -27,6 +27,9 @@
   height: 1rem;
   padding: 0.2rem;
   position: relative;
+  background-color: transparent;
+  font-family: Microsoft Yahei;
+  color: black;
   .back {
     height: 100%;
     position: absolute;
