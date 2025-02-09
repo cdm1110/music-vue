@@ -22,4 +22,13 @@
   width: 0.5rem;
   height: 0.5rem;
 }
+
+.router-link-active {
+  text-decoration: none;
+  color: orange;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
 </style>

@@ -12,14 +12,16 @@
         class="music-swipe"
       >
         <van-swipe-item v-for="item in SelectMusicList" :key="item.id">
-          <img :src="item.picUrl" alt="" />
-          <span class="subscripe">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-erji"></use>
-            </svg>
-            <span class="count">{{ playCount(item.playCount) }}</span>
-          </span>
-          <span class="name">{{ item.name }}</span>
+          <router-link :to="'/playlist/' + item.id">
+            <img :src="item.picUrl" alt="" />
+            <span class="subscripe">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-erji"></use>
+              </svg>
+              <span class="count">{{ playCount(item.playCount) }}</span>
+            </span>
+            <span class="name">{{ item.name }}</span></router-link
+          >
         </van-swipe-item>
       </van-swipe>
     </div>
@@ -27,15 +29,15 @@
 </template>
 
 <script setup>
-import { getSelectMusicData } from '@/api/home/interfaces'
+import { getSelectMusicData } from '@/api/home'
 import { ref } from 'vue'
 
 //获取甄选歌单数据
 const SelectMusicList = ref([])
 const getSelectMusic = async () => {
-  const res = await getSelectMusicData(30)
+  const res = await getSelectMusicData(10)
   SelectMusicList.value = res.data.result
-  console.log(SelectMusicList.value)
+  // console.log(SelectMusicList.value)
 }
 getSelectMusic()
 

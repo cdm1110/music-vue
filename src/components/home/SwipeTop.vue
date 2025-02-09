@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { getSwipeTopData } from '@/api/home/interfaces'
+import { getSwipeTopData } from '@/api/home'
 import { ref } from 'vue'
 
 const SwipeTopList = ref([])
@@ -17,10 +17,10 @@ const SwipeTopList = ref([])
 const getSwipeTop = async () => {
   const res = await getSwipeTopData()
   SwipeTopList.value = res.data.banners
-  console.log(SwipeTopList.value)
+  // console.log(SwipeTopList.value)
 }
 getSwipeTop()
-console.log(SwipeTopList.value)
+// console.log(SwipeTopList.value)
 
 // const images = [
 //   'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
