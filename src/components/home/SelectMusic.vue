@@ -18,7 +18,7 @@
               <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-erji"></use>
               </svg>
-              <span class="count">{{ playCount(item.playCount) }}</span>
+              <span class="count">{{ handleCount(item.playCount) }}</span>
             </span>
             <span class="name">{{ item.name }}</span></router-link
           >
@@ -31,6 +31,7 @@
 <script setup>
 import { getSelectMusicData } from '@/api/home'
 import { ref } from 'vue'
+import handleCount from '@/utils/count'
 
 //获取甄选歌单数据
 const SelectMusicList = ref([])
@@ -40,16 +41,6 @@ const getSelectMusic = async () => {
   // console.log(SelectMusicList.value)
 }
 getSelectMusic()
-
-//处理播放量数据，转换单位
-const playCount = (num) => {
-  if (num >= 100000000) {
-    return (num / 100000000).toFixed(1) + '亿'
-  } else if (num >= 10000) {
-    return (num / 10000).toFixed(1) + '万'
-  }
-  return num
-}
 </script>
 
 <style lang="less" scoped>
