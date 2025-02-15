@@ -9,3 +9,6 @@ export const getMusicListData = (data) =>
   request.get(
     `/playlist/track/all?id=${data.id}&limit=${data.limit}&offset=${data.offset}`
   )
+
+//获取歌曲url
+export const getMusicShowData = (data) => request.get(`/song/url?id=${data}`)

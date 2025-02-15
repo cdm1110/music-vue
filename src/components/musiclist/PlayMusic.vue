@@ -8,13 +8,16 @@
     </div>
     <div class="musiclist bgc">
       <div class="musicItem" v-for="(item, index) in MusicList" :key="index">
-        <div class="ItemLeft">
+        <div class="ItemLeft" @click="ToMusic(item.id)">
           <span class="musicIndex">{{ index + 1 }}</span>
           <div class="musicContent">
             <div class="musicname">{{ item.name }}</div>
-            <span v-for="(item1, index) in item.ar" :key="index">{{
-              item1.name
-            }}</span>
+            <div class="musicar">
+              <span v-for="(item1, index) in item.ar" :key="index">{{
+                item1.name
+              }}</span>
+              <span>-{{ item.al.name }}</span>
+            </div>
           </div>
         </div>
         <div class="ItemRight">
@@ -29,24 +32,29 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { getMusicListData } from '@/api/playlist'
-
+import { useRouter } from 'vue-router'
 const props = defineProps({
-  id: {
+  MusicList: {
+    type: Array,
+    required: true
+  },
+  title: {
     type: String,
     required: true
   }
 })
-const id = props.id
-const MusicList = ref([])
 
-const getMusicList = async () => {
-  const res = await getMusicListData({ id, limit: 1000, offset: 0 })
-  MusicList.value = res.data.songs
-  // console.log(MusicList.value)
+const router = useRouter()
+const ToMusic = (data) => {
+  router.push({
+    path: '/music',
+    name: 'music',
+    query: {
+      id: data,
+      title: props.title
+    }
+  })
 }
-getMusicList()
 </script>
 
 <style lang="less" scoped>
@@ -85,7 +93,7 @@ getMusicList()
     top: 5.2rem;
     .musicItem {
       width: 100%;
-      height: 0.9rem;
+      height: 1.1rem;
       padding: 0 0.2rem;
       display: flex;
       // border: 1px solid;
@@ -100,21 +108,28 @@ getMusicList()
           height: 100%;
           text-align: center;
           font-size: 0.35rem;
-          line-height: 0.8rem;
+          line-height: 1.1rem;
           font-weight: 100;
         }
         .musicContent {
           margin-left: 0.3rem;
           width: 5.4rem;
           .musicname {
-            font-weight: 600;
+            height: 0.4rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
           }
-          span {
+          .musicar {
+            height: 0.3rem;
             font-weight: 400;
             font-size: 0.24rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            span {
+              margin-right: 0.15rem;
+            }
           }
         }
       }

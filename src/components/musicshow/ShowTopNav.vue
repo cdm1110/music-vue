@@ -6,20 +6,21 @@
       </svg>
     </div>
     <div class="text">
-      <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-yinle"></use>
-      </svg>
-      <span>甄选歌单</span>
+      <span>{{ title }}</span>
     </div>
-    <div class="search">
+    <div class="share">
       <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-sousuo"></use>
+        <use xlink:href="#icon-fenxiang-copy"></use>
       </svg>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+defineProps({
+  title: String
+})
+</script>
 
 <style scoped>
 .top {
@@ -40,21 +41,20 @@
     position: absolute;
     left: 0.9rem;
     line-height: 100%;
-    .icon {
-      width: 0.4rem;
-      height: 0.4rem;
-      position: absolute;
-      top: 0.065rem;
-    }
     span {
-      width: 5rem;
-      font-size: 0.36rem;
+      height: 0.3rem;
+      font-weight: 400;
+      font-size: 0.24rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
       position: absolute;
       top: 0.12rem;
-      left: 25px;
+      left: 1rem;
     }
   }
-  .search {
+  .share {
     height: 100%;
     position: absolute;
     right: 0.2rem;

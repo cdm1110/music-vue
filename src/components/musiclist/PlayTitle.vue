@@ -79,7 +79,7 @@ const playlist = ref({
 const getPlaylist = async (x) => {
   const res = await getPlaylistData(x)
   const a = res.data.playlist
-  console.log(res.data)
+  //console.log(res.data)
   //赋值
   playlist.value.ImgUrl = a.coverImgUrl
   playlist.value.name = a.name
@@ -90,9 +90,13 @@ const getPlaylist = async (x) => {
   playlist.value.nickname = a.creator.nickname
   playlist.value.commentCount = a.commentCount
   playlist.value.collectCount = a.subscribedCount
-  console.log(playlist.value)
+  //console.log(playlist.value)
+  emit('playname', playlist.value.name)
 }
 getPlaylist(id)
+
+//传给父组件歌单标题
+const emit = defineEmits(['playname'])
 </script>
 
 <style lang="less" scoped>
