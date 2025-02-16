@@ -38,11 +38,15 @@ defineProps({
   }
   .text {
     height: 100%;
+    width: 5.5rem;
     position: absolute;
-    left: 0.9rem;
+    left: 1rem;
     line-height: 100%;
+    margin: 0 0;
     span {
       height: 0.3rem;
+      width: 100%;
+      text-align: center;
       font-weight: 400;
       font-size: 0.24rem;
       white-space: nowrap;
@@ -51,7 +55,6 @@ defineProps({
 
       position: absolute;
       top: 0.12rem;
-      left: 1rem;
     }
   }
   .share {

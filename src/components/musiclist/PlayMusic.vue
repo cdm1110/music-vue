@@ -11,7 +11,9 @@
         <div class="ItemLeft" @click="ToMusic(item.id)">
           <span class="musicIndex">{{ index + 1 }}</span>
           <div class="musicContent">
-            <div class="musicname">{{ item.name }}</div>
+            <div class="musicname">
+              {{ item.name }} <span v-if="item.tns">({{ item.tns[0] }})</span>
+            </div>
             <div class="musicar">
               <span v-for="(item1, index) in item.ar" :key="index">{{
                 item1.name
@@ -122,6 +124,7 @@ const ToMusic = (data) => {
           }
           .musicar {
             height: 0.3rem;
+            //color: #383838;
             font-weight: 400;
             font-size: 0.24rem;
             white-space: nowrap;

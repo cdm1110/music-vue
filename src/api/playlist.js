@@ -4,11 +4,8 @@ import request from '@/utils/request'
 export const getPlaylistData = (data) =>
   request.get(`/playlist/detail?id=${data}`)
 
-//获取歌曲详细
+//获取歌单歌曲列表
 export const getMusicListData = (data) =>
   request.get(
     `/playlist/track/all?id=${data.id}&limit=${data.limit}&offset=${data.offset}`
   )
-
-//获取歌曲url
-export const getMusicShowData = (data) => request.get(`/song/url?id=${data}`)
