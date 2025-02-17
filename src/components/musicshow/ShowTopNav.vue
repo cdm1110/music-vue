@@ -1,12 +1,12 @@
 <template>
   <div class="top">
-    <div class="back">
+    <div class="back" @click="goBack()">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-zuojiantou1"></use>
       </svg>
     </div>
     <div class="text">
-      <span>{{ title }}</span>
+      <span><slot></slot></span>
     </div>
     <div class="share">
       <svg class="icon" aria-hidden="true">
@@ -17,9 +17,14 @@
 </template>
 
 <script setup>
+import router from '@/router'
+
 defineProps({
   title: String
 })
+const goBack = () => {
+  router.go(-1)
+}
 </script>
 
 <style scoped>
@@ -30,14 +35,14 @@ defineProps({
   position: relative;
   background-color: transparent;
   font-family: Microsoft Yahei;
-  color: black;
+  color: #eeeeee;
   .back {
     height: 100%;
     position: absolute;
     left: 0.2rem;
   }
   .text {
-    height: 100%;
+    height: 0.6rem;
     width: 5.5rem;
     position: absolute;
     left: 1rem;

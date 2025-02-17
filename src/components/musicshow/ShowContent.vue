@@ -1,6 +1,7 @@
 <template>
+  <ShowTopNav>{{ title }} </ShowTopNav>
   <div class="showContent">
-    <div class="showImg">
+    <div class="showImg" @click="MusicStore.updatelyric_change()">
       <img :src="MusicContent.picUrl" />
       <div class="showIcon"></div>
     </div>
@@ -18,12 +19,12 @@
       </div>
       <div class="love">
         <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-hear-half"></use>
+          <use xlink:href="#icon-aixin"></use>
         </svg>
       </div>
       <div class="comment">
         <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-pinglun"></use>
+          <use xlink:href="#icon-pinglun-copy"></use>
         </svg>
       </div>
     </div>
@@ -31,34 +32,16 @@
 </template>
 
 <script setup>
-import { getMusicContentData } from '@/api/musicshow'
-import { ref } from 'vue'
-const props = defineProps({
-  id: String
-})
-const id = props.id
+import ShowTopNav from '@/components/musicshow/ShowTopNav.vue'
 
-//获取歌曲详细内容
-const MusicContent = ref({
-  picUrl: '', //歌曲图片
-  title: '', //歌曲标题
-  arname: [] //作者名字
-  // tns: [] 别名
-})
+//导入music仓库
+import { useMusicStore } from '@/stores'
+const MusicStore = useMusicStore()
 
-const getMusicContent = async () => {
-  const res = await getMusicContentData(id)
-  const a = res.data.songs[0]
-  console.log(a)
-  MusicContent.value.picUrl = a.al.picUrl
-  MusicContent.value.arname = a.ar
-  MusicContent.value.title = a.name
-  if (a.tns) {
-    MusicContent.value.tns = a.tns
-    console.log(a.tns)
-  }
-}
-getMusicContent()
+defineProps({
+  title: String,
+  MusicContent: Object
+})
 </script>
 
 <style lang="less" scoped>
@@ -97,7 +80,7 @@ getMusicContent()
   }
   .showText {
     width: 100%;
-    height: 0.7rem;
+    height: 0.8rem;
     margin-top: 0.8rem;
     display: flex;
     justify-content: space-between;
@@ -106,6 +89,7 @@ getMusicContent()
       height: 100%;
       width: 4.5rem;
       margin-right: 0.2rem;
+      color: white;
       .title {
         font-size: 0.34rem;
         white-space: nowrap;
@@ -114,7 +98,8 @@ getMusicContent()
       }
       .arname {
         font-weight: 400;
-        color: #383838;
+        // color: #383838;
+        color: #eeeeee;
         font-size: 0.24rem;
         white-space: nowrap;
         overflow: hidden;
@@ -124,12 +109,12 @@ getMusicContent()
     .love {
       padding-top: 0.06rem;
       .icon {
-        height: 0.55rem;
-        width: 0.55rem;
+        height: 0.6rem;
+        width: 0.6rem;
       }
     }
     .comment {
-      padding-top: 0.02rem;
+      padding-top: 0.06rem;
       .icon {
         height: 0.6rem;
         width: 0.6rem;

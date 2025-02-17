@@ -1,6 +1,6 @@
 <template>
   <div class="top">
-    <div class="back">
+    <div class="back" @click="goBack()">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-zuojiantou1"></use>
       </svg>
@@ -19,7 +19,13 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import router from '@/router'
+
+const goBack = () => {
+  router.go(-1)
+}
+</script>
 
 <style scoped>
 .top {

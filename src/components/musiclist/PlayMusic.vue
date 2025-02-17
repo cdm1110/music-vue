@@ -34,6 +34,10 @@
 </template>
 
 <script setup>
+//导入music仓库
+import { useMusicStore } from '@/stores'
+const MusicStore = useMusicStore()
+
 import { useRouter } from 'vue-router'
 const props = defineProps({
   MusicList: {
@@ -48,6 +52,9 @@ const props = defineProps({
 
 const router = useRouter()
 const ToMusic = (data) => {
+  //保证进入播放页时是磁盘界面
+  MusicStore.setlyric_change(false)
+  //路由传参
   router.push({
     path: '/music',
     name: 'music',
@@ -118,6 +125,7 @@ const ToMusic = (data) => {
           width: 5.4rem;
           .musicname {
             height: 0.4rem;
+            line-height: 0.4rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;

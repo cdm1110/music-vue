@@ -30,7 +30,7 @@ const MusicList = ref([])
 const getMusicList = async () => {
   const res = await getMusicListData({ id, limit: 1000, offset: 0 })
   MusicList.value = res.data.songs
-  console.log(MusicList.value)
+  // console.log(MusicList.value)
 }
 getMusicList()
 </script>
