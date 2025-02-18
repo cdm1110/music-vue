@@ -27,15 +27,18 @@ const goBack = () => {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .top {
   width: 100%;
   height: 1rem;
   padding: 0.2rem;
-  position: relative;
-  background-color: transparent;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
   font-family: Microsoft Yahei;
   color: black;
+  background-color: transparent;
+
   .back {
     height: 100%;
     position: absolute;

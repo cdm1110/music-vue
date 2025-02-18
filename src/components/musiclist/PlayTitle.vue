@@ -31,7 +31,7 @@
         介绍：{{ playlist.description ? playlist.description : '无' }}
       </div>
       <div class="button">
-        <div class="comment">
+        <div class="comment" @click="ToComment">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-pinglun"></use>
           </svg>
@@ -52,6 +52,7 @@
 import { getPlaylistData } from '@/api/playlist'
 import { ref } from 'vue'
 import handleCount from '@/utils/count'
+import router from '@/router'
 
 const props = defineProps({
   id: {
@@ -59,7 +60,7 @@ const props = defineProps({
     required: true
   }
 })
-
+//歌单id
 const id = props.id
 
 //歌单详细数据
@@ -76,10 +77,11 @@ const playlist = ref({
 })
 
 //获取歌单详细
-const getPlaylist = async (x) => {
-  const res = await getPlaylistData(x)
+const getPlaylist = async (id) => {
+  const res = await getPlaylistData(id)
   const a = res.data.playlist
-  //console.log(res.data)
+
+  console.log(res.data)
   //赋值
   playlist.value.ImgUrl = a.coverImgUrl
   playlist.value.name = a.name
@@ -97,6 +99,15 @@ getPlaylist(id)
 
 //传给父组件歌单标题
 const emit = defineEmits(['playname'])
+
+const ToComment = () => {
+  router.push({
+    path: '/comment',
+    query: {
+      id: id
+    }
+  })
+}
 </script>
 
 <style lang="less" scoped>

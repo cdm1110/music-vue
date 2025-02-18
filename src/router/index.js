@@ -1,3 +1,4 @@
+import CommentPage from '@/view/CommentPage.vue'
 import Index from '@/view/index.vue'
 import MusicShow from '@/view/MusicShow.vue'
 import PlayList from '@/view/PlayList.vue'
@@ -12,7 +13,8 @@ const router = createRouter({
     { path: '/', redirect: '/index' },
     { path: '/index', component: Index },
     { path: '/playlist/:id', component: PlayList, props: true },
-    { path: '/music', name: 'music', component: MusicShow }
+    { path: '/music', name: 'music', component: MusicShow },
+    { path: '/comment', component: CommentPage }
   ]
 })
 

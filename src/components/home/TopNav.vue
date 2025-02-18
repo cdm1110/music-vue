@@ -27,6 +27,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background-color: white;
   .topContent {
     width: 65%;
     height: 100%;

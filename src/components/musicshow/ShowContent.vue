@@ -13,7 +13,7 @@
         </div>
         <div class="arname">
           <span v-for="(item, i) in MusicContent.arname" :key="i">
-            {{ item.name }}
+            {{ item.name }}&nbsp;
           </span>
         </div>
       </div>
@@ -99,7 +99,7 @@ defineProps({
       .arname {
         font-weight: 400;
         // color: #383838;
-        color: #eeeeee;
+        color: #e2e2e2;
         font-size: 0.24rem;
         white-space: nowrap;
         overflow: hidden;
@@ -108,6 +108,7 @@ defineProps({
     }
     .love {
       padding-top: 0.06rem;
+      margin-right: 40px;
       .icon {
         height: 0.6rem;
         width: 0.6rem;
@@ -115,6 +116,7 @@ defineProps({
     }
     .comment {
       padding-top: 0.06rem;
+      margin-right: 10px;
       .icon {
         height: 0.6rem;
         width: 0.6rem;
