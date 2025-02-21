@@ -1,14 +1,11 @@
 <template>
   <div class="CommentTitle">
     <div class="titleImg">
-      <img
-        src="https://p1.music.126.net/tIYa4lrSBQFs9Z7i49YTHg==/109951169384729742.jpg"
-        alt=""
-      />
+      <img :src="Ob.img" />
     </div>
     <div class="titleText">
-      <div class="title">标题</div>
-      <div class="arname">作者</div>
+      <div class="title">{{ Ob.title }}</div>
+      <div class="arname">{{ Ob.name }}</div>
     </div>
     <div class="titleButton">
       <svg class="icon" aria-hidden="true">
@@ -18,7 +15,11 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+defineProps({
+  Ob: Object
+})
+</script>
 
 <style lang="less" scoped>
 .CommentTitle {

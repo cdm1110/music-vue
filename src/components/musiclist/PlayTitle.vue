@@ -82,7 +82,7 @@ const getPlaylist = async (id) => {
   const a = res.data.playlist
 
   console.log(res.data)
-  //赋值
+  //赋值给Playlist
   playlist.value.ImgUrl = a.coverImgUrl
   playlist.value.name = a.name
   playlist.value.description = a.description
@@ -94,17 +94,34 @@ const getPlaylist = async (id) => {
   playlist.value.collectCount = a.subscribedCount
   //console.log(playlist.value)
   emit('playname', playlist.value.name)
+  //赋值给CommentObject
+  CommentObject.value.total = a.commentCount
+  CommentObject.value.img = a.coverImgUrl
+  CommentObject.value.title = a.name
+  CommentObject.value.name = a.creator.nickname
 }
 getPlaylist(id)
 
 //传给父组件歌单标题
 const emit = defineEmits(['playname'])
 
+//传给评论页的资源
+const CommentObject = ref({
+  id: id, //资源id
+  total: '', //资源评论数量
+  type: 2, //资源类型，此为歌单
+
+  img: '', //资源图片
+  title: '', //资源标题
+  name: '' //资源作者名字
+})
+// console.log(CommentObject)
+
 const ToComment = () => {
   router.push({
     path: '/comment',
     query: {
-      id: id
+      Ob: JSON.stringify(CommentObject.value)
     }
   })
 }

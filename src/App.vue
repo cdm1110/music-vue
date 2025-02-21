@@ -16,7 +16,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Microsoft Yahei;
+  font-family: Lantinghei SC;
+  letter-spacing: 0.5px;
 }
 
 .icon {
