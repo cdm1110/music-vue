@@ -3,16 +3,6 @@
   <SwipeTop></SwipeTop>
   <MenuList></MenuList>
   <SelectMusic></SelectMusic>
-  <div class="">123</div>
-  <div class="">123</div>
-  <div class="">123</div>
-  <div class="">123</div>
-  <div class="">123</div>
-  <div class="">123</div>
-  <div class="">123</div>
-  <div class="">123</div>
-  <div class="">123</div>
-  <div class="">123</div>
 </template>
 
 <script setup>

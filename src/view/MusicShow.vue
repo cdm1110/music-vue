@@ -40,6 +40,7 @@ getMusicShow()
 import { getMusicContentData } from '@/api/musicshow'
 
 const MusicContent = ref({
+  id: '',
   picUrl: '', //歌曲图片
   title: '', //歌曲标题
   arname: [] //作者名字
@@ -50,12 +51,13 @@ const getMusicContent = async () => {
   const res = await getMusicContentData(id)
   const a = res.data.songs[0]
   console.log(a)
+  MusicContent.value.id = a.id
   MusicContent.value.picUrl = a.al.picUrl
   MusicContent.value.arname = a.ar
   MusicContent.value.title = a.name
   if (a.tns) {
     MusicContent.value.tns = a.tns
-    console.log(a.tns)
+    // console.log(a.tns)
   }
   bg.value = `url(${MusicContent.value.picUrl})`
 }

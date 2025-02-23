@@ -95,7 +95,6 @@ const getPlaylist = async (id) => {
   //console.log(playlist.value)
   emit('playname', playlist.value.name)
   //赋值给CommentObject
-  CommentObject.value.total = a.commentCount
   CommentObject.value.img = a.coverImgUrl
   CommentObject.value.title = a.name
   CommentObject.value.name = a.creator.nickname
@@ -108,7 +107,7 @@ const emit = defineEmits(['playname'])
 //传给评论页的资源
 const CommentObject = ref({
   id: id, //资源id
-  total: '', //资源评论数量
+  total: 100, //资源评论数量
   type: 2, //资源类型，此为歌单
 
   img: '', //资源图片

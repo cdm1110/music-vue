@@ -1,7 +1,8 @@
 <template>
-  <CommentTopNav :total="Ob.total"></CommentTopNav>
+  <CommentTopNav></CommentTopNav>
   <CommentTitle :Ob="Ob"></CommentTitle>
   <CommentText :Ob="Ob"></CommentText>
+  <CommentBottom></CommentBottom>
 </template>
 
 <script setup>
@@ -9,6 +10,7 @@
 import CommentTopNav from '@/components/comment/CommentTopNav.vue'
 import CommentTitle from '@/components/comment/CommentTitle.vue'
 import CommentText from '@/components/comment/CommentText.vue'
+import CommentBottom from '@/components/comment/CommentBottom.vue'
 
 import { useRoute } from 'vue-router'
 

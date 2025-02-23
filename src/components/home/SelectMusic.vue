@@ -26,10 +26,37 @@
       </van-swipe>
     </div>
   </div>
+  <div class="SelectMusic">
+    <div class="SelectTop">
+      <div class="title">精品歌单</div>
+      <div class="more">更多</div>
+    </div>
+    <div class="SelectContent">
+      <van-swipe
+        :loop="false"
+        :width="130"
+        :show-indicators="false"
+        class="music-swipe"
+      >
+        <van-swipe-item v-for="item in NiceMusicList" :key="item.id">
+          <router-link :to="'/playlist/' + item.id">
+            <img :src="item.coverImgUrl" alt="" />
+            <span class="subscripe">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-erji"></use>
+              </svg>
+              <span class="count">{{ handleCount(item.playCount) }}</span>
+            </span>
+            <span class="name">{{ item.name }}</span></router-link
+          >
+        </van-swipe-item>
+      </van-swipe>
+    </div>
+  </div>
 </template>
 
 <script setup>
-import { getSelectMusicData } from '@/api/home'
+import { getNiceMusicData, getSelectMusicData } from '@/api/home'
 import { ref } from 'vue'
 import handleCount from '@/utils/count'
 
@@ -41,12 +68,19 @@ const getSelectMusic = async () => {
   // console.log(SelectMusicList.value)
 }
 getSelectMusic()
+
+const NiceMusicList = ref([])
+const getNiceMusic = async () => {
+  const res = await getNiceMusicData(10)
+  NiceMusicList.value = res.data.playlists
+}
+getNiceMusic()
 </script>
 
 <style lang="less" scoped>
 .SelectMusic {
   width: 100%;
-  height: 5rem;
+  height: 4rem;
   padding: 0 0.2rem;
   .SelectTop {
     width: 100%;
@@ -70,7 +104,7 @@ getSelectMusic()
   }
   .SelectContent {
     width: 100%;
-    height: 3.6rem;
+    height: 3.5rem;
     .music-swipe {
       position: relative;
       height: 100%;

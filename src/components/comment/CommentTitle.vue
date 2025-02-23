@@ -7,7 +7,7 @@
       <div class="title">{{ Ob.title }}</div>
       <div class="arname">{{ Ob.name }}</div>
     </div>
-    <div class="titleButton">
+    <div class="titleButton" v-if="Ob.type == '1'">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-youjiantou"></use>
       </svg>

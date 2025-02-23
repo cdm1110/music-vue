@@ -22,7 +22,7 @@
           <use xlink:href="#icon-aixin"></use>
         </svg>
       </div>
-      <div class="comment">
+      <div class="comment" @click="ToComment()">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-pinglun-copy"></use>
         </svg>
@@ -33,15 +33,44 @@
 
 <script setup>
 import ShowTopNav from '@/components/musicshow/ShowTopNav.vue'
+import router from '@/router'
 
 //导入music仓库
 import { useMusicStore } from '@/stores'
+import { ref } from 'vue'
 const MusicStore = useMusicStore()
 
-defineProps({
+const props = defineProps({
   title: String,
   MusicContent: Object
 })
+
+const a = props.MusicContent
+
+//传给评论页的参数
+const CommentObject = ref({
+  id: '', //资源id
+  total: 100, //资源评论数量
+  type: 0, //资源类型，此为歌曲
+
+  img: '', //资源图片
+  title: '', //资源标题
+  name: '' //资源作者名字
+})
+
+const ToComment = () => {
+  CommentObject.value.id = a.id
+  CommentObject.value.img = a.picUrl
+  CommentObject.value.title = a.title
+  CommentObject.value.name = a.arname[0].name
+  console.log(CommentObject.value)
+  router.push({
+    path: '/comment',
+    query: {
+      Ob: JSON.stringify(CommentObject.value)
+    }
+  })
+}
 </script>
 
 <style lang="less" scoped>

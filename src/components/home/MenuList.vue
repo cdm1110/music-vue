@@ -1,6 +1,6 @@
 <template>
   <div class="MenuList">
-    <div class="recommend iconitem">
+    <div class="recommend iconitem" @click="ToDailyList()">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-meirituijian"></use>
       </svg>
@@ -27,7 +27,15 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { getDailyMusicData } from '@/api/home'
+
+const getDailyMusic = async () => {
+  const res = await getDailyMusicData()
+  console.log(res.data)
+}
+getDailyMusic()
+</script>
 
 <style scoped>
 .MenuList {

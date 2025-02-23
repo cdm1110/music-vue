@@ -5,7 +5,7 @@
         <use xlink:href="#icon-zuojiantou1"></use>
       </svg>
     </div>
-    <div class="text">评论({{ total }})</div>
+    <div class="text">评论</div>
   </div>
 </template>
 
@@ -15,10 +15,6 @@ import router from '@/router'
 const goBack = () => {
   router.go(-1)
 }
-
-defineProps({
-  total: Number
-})
 </script>
 
 <style scoped lang="less">
@@ -28,7 +24,7 @@ defineProps({
   padding: 0.2rem;
   position: sticky;
   top: 0;
-  z-index: 9999;
+  z-index: 100;
   font-family: Microsoft Yahei;
   color: black;
   background-color: white;

@@ -11,13 +11,13 @@ export const getCommentData = (id, type, pageSize, sortType) =>
   )
 
 //楼层评论
-// parentCommentId: 楼层评论 id
+// parentCommentId:
 // id : 资源 id
 // type: 0:歌曲  1:mv  2:歌单  3:专辑  4:电台  5:视频  6:动态
 // limit: 取出评论数量
 export const getFloorCommentData = (parentCommentId, id, type, limit) =>
   request.get(
-    `/comment/floor?parentCommentId=${parentCommentId}&id=${id}&type=${type}&limit${limit}`
+    `/comment/floor?parentCommentId=${parentCommentId}&id=${id}&type=${type}&limit=${limit}`
   )
 
 //给评论点赞 ( 需要登录 )
