@@ -34,11 +34,11 @@
 </template>
 
 <script setup>
+import router from '@/router'
 //导入music仓库
 import { useMusicStore } from '@/stores'
 const MusicStore = useMusicStore()
 
-import { useRouter } from 'vue-router'
 const props = defineProps({
   MusicList: {
     type: Array,
@@ -50,7 +50,6 @@ const props = defineProps({
   }
 })
 
-const router = useRouter()
 const ToMusic = (data) => {
   //保证进入播放页时是磁盘界面
   MusicStore.setlyric_change(false)

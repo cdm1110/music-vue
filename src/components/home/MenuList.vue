@@ -28,13 +28,13 @@
 </template>
 
 <script setup>
-import { getDailyMusicData } from '@/api/home'
+import router from '@/router'
 
-const getDailyMusic = async () => {
-  const res = await getDailyMusicData()
-  console.log(res.data)
+const ToDailyList = () => {
+  router.push({
+    path: '/daily'
+  })
 }
-getDailyMusic()
 </script>
 
 <style scoped>
