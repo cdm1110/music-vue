@@ -50,7 +50,7 @@ const bg = ref('')
 const getMusicContent = async () => {
   const res = await getMusicContentData(id)
   const a = res.data.songs[0]
-  console.log(a)
+  //console.log(a)
   MusicContent.value.id = a.id
   MusicContent.value.picUrl = a.al.picUrl
   MusicContent.value.arname = a.ar

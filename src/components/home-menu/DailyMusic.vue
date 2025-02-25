@@ -6,9 +6,6 @@
       </svg>
     </div>
     <div class="text">
-      <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-yinle"></use>
-      </svg>
       <span>每日推荐</span>
     </div>
     <div class="search">
@@ -18,11 +15,11 @@
     </div>
   </div>
   <!-- 每日推荐歌单 -->
-  <div class="SelectMusic">
-    <div class="SelectTop">
+  <div class="DailyMusic">
+    <div class="DailyTop">
       <div class="title">推荐歌单</div>
     </div>
-    <div class="SelectContent">
+    <div class="DailyContent">
       <van-swipe
         :loop="false"
         :width="130"
@@ -44,7 +41,7 @@
       </van-swipe>
     </div>
   </div>
-  <div class="SelectTop">
+  <div class="DailyTop">
     <div class="title">推荐歌曲</div>
   </div>
   <!-- 每日推荐歌曲 -->
@@ -97,7 +94,7 @@ const DailyList = ref([])
 const getDailyList = async () => {
   const res = await getDailyListData()
   DailyList.value = res.data.recommend
-  console.log(DailyList.value)
+  //console.log(DailyList.value)
 }
 getDailyList()
 
@@ -107,7 +104,7 @@ const DailyMusic = ref([])
 const getDailyMusic = async () => {
   const res = await getDailyMusicData()
   DailyMusic.value = res.data.data.dailySongs
-  console.log(DailyMusic.value)
+  //console.log(DailyMusic.value)
 }
 getDailyMusic()
 
@@ -134,33 +131,22 @@ const ToMusic = (data) => {
   width: 100%;
   height: 1rem;
   padding: 0.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   font-family: Microsoft Yahei;
   color: black;
-  background-color: transparent;
-
+  background-color: white;
+  display: flex;
+  justify-content: left;
   .back {
     height: 100%;
-    position: absolute;
-    left: 0.2rem;
   }
   .text {
     height: 100%;
-    position: absolute;
-    left: 0.9rem;
-    line-height: 100%;
-    .icon {
-      width: 0.4rem;
-      height: 0.4rem;
-      position: absolute;
-      top: 0.065rem;
-    }
-    span {
-      width: 5rem;
-      font-size: 0.36rem;
-      position: absolute;
-      top: 0.12rem;
-      left: 25px;
-    }
+    width: 5rem;
+    font-size: 0.34rem;
+    margin-left: 0.2rem;
   }
   .search {
     height: 100%;
@@ -169,7 +155,7 @@ const ToMusic = (data) => {
     top: 0.21rem;
   }
 }
-.SelectTop {
+.DailyTop {
   width: 100%;
   padding: 0 0.2rem;
   height: 0.5rem;
@@ -177,14 +163,14 @@ const ToMusic = (data) => {
   justify-content: space-between;
   margin: 0.2rem 0;
   .title {
-    font-size: 0.35rem;
-    font-weight: 900;
+    font-size: 0.34rem;
+    font-weight: 600;
   }
 }
-.SelectMusic {
+.DailyMusic {
   width: 100%;
   height: 4rem;
-  .SelectContent {
+  .DailyContent {
     width: 100%;
     height: 3.5rem;
     padding: 0 0.2rem;

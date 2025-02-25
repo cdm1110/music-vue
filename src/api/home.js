@@ -18,7 +18,7 @@ export const getDailyMusicData = () => request.get('/recommend/songs')
 export const getDailyListData = () => request.get('/recommend/resource')
 
 //获取所有榜单
-export const getTopListData = () => request.get('/toplist')
+export const getTopListData = () => request.get('/toplist/detail')
 
 //获得歌单分类数据
 export const getClassListData = () => request.get('/playlist/catlist')

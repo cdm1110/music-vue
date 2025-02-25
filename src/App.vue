@@ -12,12 +12,16 @@
 </template>
 
 <style>
+.bgw {
+  background: white;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Lantinghei SC;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.01rem;
 }
 
 .icon {

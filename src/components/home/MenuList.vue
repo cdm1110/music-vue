@@ -1,12 +1,12 @@
 <template>
   <div class="MenuList">
-    <div class="recommend iconitem" @click="ToDailyList()">
+    <div class="recommend iconitem" @click="ToDailyMusic()">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-meirituijian"></use>
       </svg>
       <span>每日推荐</span>
     </div>
-    <div class="ranking iconitem">
+    <div class="ranking iconitem" @click="ToTopMusic()">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-paihangbang"></use>
       </svg>
@@ -30,9 +30,14 @@
 <script setup>
 import router from '@/router'
 
-const ToDailyList = () => {
+const ToDailyMusic = () => {
   router.push({
-    path: '/daily'
+    path: '/index/daily'
+  })
+}
+const ToTopMusic = () => {
+  router.push({
+    path: '/index/top'
   })
 }
 </script>
@@ -46,6 +51,7 @@ const ToDailyList = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: white;
   .iconitem {
     text-align: center;
     font-size: 0.25rem;

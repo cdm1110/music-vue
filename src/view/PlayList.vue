@@ -18,7 +18,7 @@ const props = defineProps({
 //从子组件获取歌单标题
 const title = ref('')
 const getPlayname = (name) => {
-  console.log(name)
+  //console.log(name)
   title.value = name
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="" id="SwipeTop">
+  <div class="bgw" id="SwipeTop">
     <van-swipe :autoplay="3000" lazy-render>
       <van-swipe-item v-for="image in SwipeTopList" :key="image">
         <img :src="image.pic" />
@@ -42,7 +42,7 @@ getSwipeTop()
       }
     }
     .van-swipe__indicator--active {
-      background-color: rgb(219, 130, 130);
+      background-color: rgb(11, 155, 202);
     }
   }
 }

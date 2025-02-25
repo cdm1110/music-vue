@@ -47,8 +47,8 @@
               </svg>
               <span class="count">{{ handleCount(item.playCount) }}</span>
             </span>
-            <span class="name">{{ item.name }}</span></router-link
-          >
+            <span class="name">{{ item.name }}</span>
+          </router-link>
         </van-swipe-item>
       </van-swipe>
     </div>
@@ -82,6 +82,8 @@ getNiceMusic()
   width: 100%;
   height: 4rem;
   padding: 0 0.2rem;
+  background: white;
+
   .SelectTop {
     width: 100%;
     height: 0.5rem;

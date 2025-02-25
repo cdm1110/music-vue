@@ -128,7 +128,7 @@ const props = defineProps({
   Ob: Object
 })
 const Ob = props.Ob
-console.log(Ob)
+//console.log(Ob)
 
 import { ref } from 'vue'
 
@@ -171,7 +171,7 @@ const getFloorComment = async (parentCommentId) => {
   FloorAvatar.value.location =
     FloorComment.value.ownerComment.ipLocation.location
   FloorAvatar.value.content = FloorComment.value.ownerComment.content
-  console.log(res)
+  //console.log(res)
 }
 const show = ref(false)
 const showBottom = (item) => {
@@ -257,7 +257,7 @@ const closeBottom = () => {
 }
 .reply {
   height: 0.33rem;
-  width: 100%;
+  width: 2rem;
   font-size: 0.24rem;
   font-weight: 200;
   color: rgb(0, 157, 255);

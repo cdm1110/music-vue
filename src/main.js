@@ -5,6 +5,6 @@ import router from './router'
 import pinia from './stores'
 import less from 'less'
 
-createApp(App).use(pinia).use(router).mount('#app').use(less)
+createApp(App).use(pinia).use(router).use(less).mount('#app')
 
 //console.log(gaga)

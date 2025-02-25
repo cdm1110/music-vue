@@ -15,5 +15,5 @@ import CommentBottom from '@/components/comment/CommentBottom.vue'
 import { useRoute } from 'vue-router'
 
 const Ob = JSON.parse(useRoute().query.Ob)
-console.log(Ob)
+//console.log(Ob)
 </script>

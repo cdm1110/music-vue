@@ -81,7 +81,7 @@ const getPlaylist = async (id) => {
   const res = await getPlaylistData(id)
   const a = res.data.playlist
 
-  console.log(res.data)
+  //console.log(res.data)
   //赋值给Playlist
   playlist.value.ImgUrl = a.coverImgUrl
   playlist.value.name = a.name
@@ -166,10 +166,10 @@ const ToComment = () => {
           height: 1.04rem;
         }
         .avatarurl {
-          width: 0.6rem;
-          height: 0.6rem;
+          width: 0.5rem;
+          height: 0.5rem;
           position: absolute;
-          top: 1.42rem;
+          top: 1.31rem;
           img {
             width: 100%;
             height: 100%;
@@ -177,11 +177,11 @@ const ToComment = () => {
           }
         }
         .avatarname {
-          width: 100%;
+          width: 3.8rem;
           font-size: 0.35rem;
           position: absolute;
-          left: 0.9rem;
-          top: 1.45rem;
+          left: 0.8rem;
+          top: 1.33rem;
           color: black;
         }
         .tags {
@@ -208,7 +208,7 @@ const ToComment = () => {
       -webkit-box-orient: vertical;
     }
     .button {
-      width: 100%;
+      // width: 100%;
       display: flex;
       justify-content: space-around;
       margin: 0.15rem;
