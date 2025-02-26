@@ -1,15 +1,14 @@
 <template>
   <ShowTopNav>{{ title }}</ShowTopNav>
   <div class="ShowLyric" @click="MusicStore.updatelyric_change()">
-    <div class="lyric_item">我是歌词1</div>
-    <div class="lyric_item active">我是歌词2</div>
-    <div class="lyric_item">我是歌词3</div>
-    <div class="lyric_item">我是歌词4</div>
-    <div class="lyric_item">我是歌词5</div>
-    <div class="lyric_item">我是歌词6</div>
-    <div class="lyric_item">我是歌词7</div>
-    <div class="lyric_item">我是歌词8</div>
-    <div class="lyric_item">我是歌词9</div>
+    <p
+      class="lyric_item"
+      v-for="(item, index) in musicLyric"
+      :key="index"
+      :class="{ active: activeIndex == index }"
+    >
+      {{ item.lyric }}
+    </p>
   </div>
   <div class="ShowText">
     <div class="love">
@@ -31,6 +30,7 @@ import ShowTopNav from '@/components/musicshow/ShowTopNav.vue'
 
 //导入music仓库
 import { useMusicStore } from '@/stores'
+import { ref } from 'vue'
 const MusicStore = useMusicStore()
 
 const props = defineProps({
@@ -38,11 +38,43 @@ const props = defineProps({
   id: String
 })
 const id = props.id
+
+//定义歌词选中状态参数
+const activeIndex = ref(0)
+
+//获取歌词
+const lyric = ref()
+const musicLyric = ref([])
 const getMusicLyric = async () => {
   const res = await getMusicLyricData(id)
-  console.log(res.data)
+  lyric.value = res.data.lrc.lyric
+  //console.log(lyric.value)
+  //正则表达式
+  const re = /\[([^\]]+)\]([^[]+)/g
+  const result = ref([])
+  lyric.value.replace(re, ($0, $1, $2) => {
+    result.value.push({ time: FormatTime($1), lyric: $2 })
+  })
+  console.log(result.value)
+  musicLyric.value = result.value
+  musicLyric.value.forEach((item, i) => {
+    if (
+      i === musicLyric.value.length - 1 ||
+      isNaN(musicLyric.value[i + 1].time)
+    ) {
+      item.pre = 100000
+    } else {
+      item.pre = musicLyric.value[i + 1].time
+    }
+  })
 }
 getMusicLyric()
+
+//格式化歌词时间
+const FormatTime = (t) => {
+  const arr = t.split(':')
+  return (Number(arr[0] * 60) + Number(arr[1])).toFixed(1)
+}
 </script>
 
 <style lang="less" scoped>
@@ -50,10 +82,13 @@ getMusicLyric()
   color: #b4b4b4;
   font-size: 0.26rem;
   height: 7.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   line-height: 0.8rem;
   text-align: center;
   margin-top: 0.6rem;
-  overflow: hidden;
+  overflow: scroll;
   .active {
     color: white;
     font-size: 0.3rem;
