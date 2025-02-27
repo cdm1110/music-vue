@@ -13,11 +13,19 @@
 
 <script setup>
 import { useRoute } from 'vue-router'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 //导入music仓库
 import { useMusicStore } from '@/stores'
 const MusicStore = useMusicStore()
+
+//底部组件显示
+import { usePlayStore } from '@/stores'
+const PlayStore = usePlayStore()
+const { updateFooterShow } = PlayStore
+onMounted(() => {
+  updateFooterShow(false)
+})
 
 //音乐播放页组件
 import ShowContent from '@/components/musicshow/ShowContent.vue'
@@ -29,12 +37,12 @@ const id = useRoute().query.id
 const title = useRoute().query.title
 
 //获取歌曲url和相关参数
-import { getMusicShowData } from '@/api/musicshow'
-const getMusicShow = async () => {
-  const res = await getMusicShowData(id)
-  console.log(res.data.data[0])
-}
-getMusicShow()
+// import { getMusicShowData } from '@/api/musicshow'
+// const getMusicShow = async () => {
+//   const res = await getMusicShowData(id)
+//   //console.log(res.data.data[0])
+// }
+// getMusicShow()
 
 //获取歌曲详细内容
 import { getMusicContentData } from '@/api/musicshow'
@@ -50,7 +58,7 @@ const bg = ref('')
 const getMusicContent = async () => {
   const res = await getMusicContentData(id)
   const a = res.data.songs[0]
-  //console.log(a)
+  console.log(a)
   MusicContent.value.id = a.id
   MusicContent.value.picUrl = a.al.picUrl
   MusicContent.value.arname = a.ar
@@ -60,6 +68,7 @@ const getMusicContent = async () => {
     // console.log(a.tns)
   }
   bg.value = `url(${MusicContent.value.picUrl})`
+  //console.log(MusicContent.value)
 }
 getMusicContent()
 </script>

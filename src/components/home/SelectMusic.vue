@@ -26,7 +26,7 @@
       </van-swipe>
     </div>
   </div>
-  <div class="SelectMusic">
+  <div class="SelectMusic moreheight">
     <div class="SelectTop">
       <div class="title">精品歌单</div>
       <div class="more">更多</div>
@@ -149,5 +149,8 @@ getNiceMusic()
       }
     }
   }
+}
+.moreheight {
+  height: 4.9rem;
 }
 </style>

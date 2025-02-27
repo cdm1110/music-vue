@@ -5,3 +5,4 @@ const pinia = createPinia().use(piniaPluginPersistedstate)
 
 export default pinia
 export * from './music'
+export * from './play'

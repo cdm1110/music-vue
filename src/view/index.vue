@@ -11,6 +11,14 @@ import SwipeTop from '@/components/home/SwipeTop.vue'
 import MenuList from '@/components/home/MenuList.vue'
 import SelectMusic from '@/components/home/SelectMusic.vue'
 
+//底部组件显示
+import { usePlayStore } from '@/stores'
+import { onMounted } from 'vue'
+const PlayStore = usePlayStore()
+const { updateFooterShow } = PlayStore
+onMounted(() => {
+  updateFooterShow(true)
+})
 // import { getTopDetailData } from '@/api/home'
 // const ClassList = ref([])
 // const getClassList = async () => {

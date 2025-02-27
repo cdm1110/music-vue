@@ -16,4 +16,13 @@ import { useRoute } from 'vue-router'
 
 const Ob = JSON.parse(useRoute().query.Ob)
 //console.log(Ob)
+
+//底部组件显示
+import { usePlayStore } from '@/stores'
+import { onMounted } from 'vue'
+const PlayStore = usePlayStore()
+const { updateFooterShow } = PlayStore
+onMounted(() => {
+  updateFooterShow(false)
+})
 </script>

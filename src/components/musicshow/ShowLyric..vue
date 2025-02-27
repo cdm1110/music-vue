@@ -1,11 +1,13 @@
 <template>
   <ShowTopNav>{{ title }}</ShowTopNav>
-  <div class="ShowLyric" @click="MusicStore.updatelyric_change()">
+  <div class="ShowLyric" ref="m_lyric" @click="MusicStore.updatelyric_change()">
     <p
       class="lyric_item"
       v-for="(item, index) in musicLyric"
       :key="index"
-      :class="{ active: activeIndex == index }"
+      :class="{
+        active: currentTime >= item.time && currentTime < item.pre
+      }"
     >
       {{ item.lyric }}
     </p>
@@ -28,19 +30,20 @@
 import { getMusicLyricData } from '@/api/musicshow'
 import ShowTopNav from '@/components/musicshow/ShowTopNav.vue'
 
-//导入music仓库
-import { useMusicStore } from '@/stores'
-import { ref } from 'vue'
+//导入music和play仓库
+import { useMusicStore, usePlayStore } from '@/stores'
+
+import { storeToRefs } from 'pinia'
+import { ref, watch } from 'vue'
 const MusicStore = useMusicStore()
+const PlayStore = usePlayStore()
+const { currentTime, duration } = storeToRefs(PlayStore)
 
 const props = defineProps({
   title: String,
   id: String
 })
 const id = props.id
-
-//定义歌词选中状态参数
-const activeIndex = ref(0)
 
 //获取歌词
 const lyric = ref()
@@ -75,6 +78,45 @@ const FormatTime = (t) => {
   const arr = t.split(':')
   return (Number(arr[0] * 60) + Number(arr[1])).toFixed(1)
 }
+
+const m_lyric = ref()
+//监听currentTime
+let lastActiveLine = null
+watch(currentTime, (newTime) => {
+  const active = document.querySelector('.lyric_item.active')
+  console.log(active)
+
+  // 只有当 active 行发生变化时才触发滚动
+  if (active && active !== lastActiveLine) {
+    lastActiveLine = active // 更新上一次的 active 行
+
+    // 获取容器和歌词行的高度
+    const containerHeight = m_lyric.value.clientHeight
+    const lineHeight = active.offsetHeight
+    const lineTop = active.offsetTop
+    console.log(lineTop)
+
+    // 计算滚动位置，使 active 行居中
+    const scrollToPosition = lineTop - containerHeight / 2 + lineHeight / 2 - 90
+    // console.log(scrollToPosition)
+
+    // 平滑滚动到目标位置
+    m_lyric.value.scrollTo({
+      top: scrollToPosition,
+      behavior: 'smooth'
+    })
+  }
+
+  if (newTime === duration) {
+    // if (playListIndex === playList.length - 1) {
+    //   this.updatePlayListIndex(0)
+    //   this.play()
+    // } else {
+    //   this.updatePlayListIndex(this.playListIndex + 1)
+    // }
+    console.log('播放完毕')
+  }
+})
 </script>
 
 <style lang="less" scoped>
@@ -97,7 +139,7 @@ const FormatTime = (t) => {
 .ShowText {
   width: 100%;
   height: 0.8rem;
-  margin-top: 0.3rem;
+  margin-top: 0.5rem;
   display: flex;
   justify-content: right;
   .love {
