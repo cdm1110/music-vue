@@ -19,23 +19,28 @@ git clone https://github.com/cdm1110/music-vue.git
 
 ## 功能效果图预览展示
 #### 1.首页
-![首页](img/index.png)
+| ![首页](img/index.png) |
+|:-|
 
 #### 2.歌单
 | ![歌单1](img/gedan1.png) | ![歌单1](img/gedan2.png) |
 |:-|:-|
 
+
 #### 3.每日推荐和排行榜
-![每日推荐](img/tuijian.png) | ![排行榜1](img/paihang1.png) | ![排行榜2](img/paihang2.png)
+![每日推荐](img/tuijian.png) | ![排行榜1](img/paihang1.png) | ![排行榜2](img/paihang2.png) |
 |:-|:-|:-|
 
+
 #### 4.歌单和歌词的评论页
-| ![评论1](img/pinglun1.png) | ![评论2](img/pinglun2.png) |
-|:-|:-|
+| ![评论1](img/pinglun1.png) | ![评论2](img/pinglun2.png) | ![评论3](img/pinglun3.png) |
+|:-|:-|:-|
+
 
 #### 5.播放页和歌词页
-| ![播放1](img/bogang1.png) | ![歌词1](img/geci1.png) | | ![播放2](img/bogang2.png) | ![歌词2](img/geci2.png) |
+| ![播放1](img/bofang1.png) | ![歌词1](img/geci1.png) | | ![播放2](img/bofang2.png) | ![歌词2](img/geci2.png) |
 |:-|:-|:-|:-|
+
 
 ## 项目页面功能完成列表
 
