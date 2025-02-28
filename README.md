@@ -6,7 +6,7 @@
 
 ## 技术栈
 
-前端： Vue3 + Vant + Vue-Router + Axios + Less + Pinia + Eslint + Prettier + Vite
+前端： Vue3 + Vant + Vue-Router + Axios + Less + Pinia + Eslint + Prettier + Vite  <br>
 后端： [网易云音乐 NodeJS 版 API](https://binaryify.github.io/NeteaseCloudMusicApi/#/)提供的API
 (ps:后端API因版权原因有可能已经无法获取)
 
