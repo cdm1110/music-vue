@@ -44,14 +44,42 @@
 </template>
 
 <script setup>
-import { usePlayStore } from '@/stores'
+import router from '@/router'
+import { useMusicStore, usePlayStore } from '@/stores'
 import { storeToRefs } from 'pinia'
+const MusicStore = useMusicStore()
 const PlayStore = usePlayStore()
-const { changeIsbtnShow } = PlayStore
-const { currentTime, isbtnShow } = storeToRefs(PlayStore)
+const { changeIsbtnShow, updatePlayListIndex } = PlayStore
+const { play_List, currentTime, isbtnShow, playListIndex } =
+  storeToRefs(PlayStore)
+
+const props = defineProps({
+  title: String
+})
 
 const goPlay = (n) => {
-  console.log(n)
+  //更新播放下标
+  let index = playListIndex.value + n
+  if (index < 0) {
+    index = play_List.value.length - 1
+  } else if (index == play_List.value.length) {
+    index = 0
+  }
+  updatePlayListIndex(index)
+
+  //保证进入播放页时是磁盘界面
+  MusicStore.setlyric_change(false)
+  //路由传参
+  router.replace({
+    path: '/music',
+    name: 'music',
+    query: {
+      id: play_List.value[playListIndex.value].id,
+      title: props.title
+    }
+  })
+  //更新播放按钮
+  changeIsbtnShow(false)
 }
 </script>
 

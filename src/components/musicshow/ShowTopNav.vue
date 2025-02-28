@@ -18,6 +18,9 @@
 
 <script setup>
 import router from '@/router'
+// import { useMusicStore } from '@/stores';
+
+// const MusicStore = useMusicStore()
 
 defineProps({
   title: String

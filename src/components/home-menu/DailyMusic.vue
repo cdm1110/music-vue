@@ -46,7 +46,7 @@
   </div>
   <!-- 每日推荐歌曲 -->
   <div class="box">
-    <div class="nav bgc">
+    <div class="nav bgc" @click="ToMusic(DailyMusic[0].id, 0)">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-bofang1-copy"></use>
       </svg>
@@ -54,7 +54,7 @@
     </div>
     <div class="musiclist bgc">
       <div class="musicItem" v-for="(item, index) in DailyMusic" :key="index">
-        <div class="ItemLeft" @click="ToMusic(item.id)">
+        <div class="ItemLeft" @click="ToMusic(item.id, index)">
           <span class="musicIndex">{{ index + 1 }}</span>
           <div class="musicContent">
             <div class="musicname">
@@ -111,7 +111,13 @@ getDailyMusic()
 //导入music仓库
 import { useMusicStore } from '@/stores'
 const MusicStore = useMusicStore()
-const ToMusic = (data) => {
+//播放仓库
+import { usePlayStore } from '@/stores'
+const PlayStore = usePlayStore()
+const { updatePlay_List, updatePlayListIndex, changeIsbtnShow } = PlayStore
+
+const ToMusic = (data, index) => {
+  MusicStore.setListName('每日推荐')
   //保证进入播放页时是磁盘界面
   MusicStore.setlyric_change(false)
   //路由传参
@@ -119,10 +125,13 @@ const ToMusic = (data) => {
     path: '/music',
     name: 'music',
     query: {
-      id: data,
-      title: '每日推荐'
+      id: data
     }
   })
+  //更新播放列表
+  updatePlay_List(DailyMusic.value)
+  updatePlayListIndex(index)
+  changeIsbtnShow(false)
 }
 </script>
 
@@ -133,7 +142,7 @@ const ToMusic = (data) => {
   padding: 0.2rem;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   font-family: Microsoft Yahei;
   color: black;
   background-color: white;
@@ -228,8 +237,8 @@ const ToMusic = (data) => {
   .nav {
     width: 100%;
     height: 1rem;
-    position: absolute;
-    top: 0rem;
+    // position: absolute;
+    // top: 0rem;
     line-height: 1rem;
     padding: 0 0.2rem;
     border-radius: 0.2rem 0.2rem 0 0;
@@ -247,8 +256,8 @@ const ToMusic = (data) => {
   }
   .musiclist {
     width: 100%;
-    position: absolute;
-    top: 1rem;
+    // position: absolute;
+    // top: 1rem;
     .musicItem {
       width: 100%;
       height: 1.1rem;

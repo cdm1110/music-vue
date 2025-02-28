@@ -7,21 +7,31 @@ export const usePlayStore = defineStore('play', () => {
     {
       //播放列表
       al: {
-        id: 15199,
-        name: 'David Tao',
-        pic: 109951169507121140,
+        id: 15185,
+        name: '太平盛世',
+        pic: 109951163803188850,
         picUrl:
-          'https://p2.music.126.net/vcyUJw7mfEzzMCgbJry31w==/109951169507121139.jpg',
-        pic_str: '109951169507121139'
+          'https://p2.music.126.net/ZR6QuByWgej9-aRhZjLqHw==/109951163803188844.jpg',
+        pic_str: '109951163803188844'
       },
-      id: 2025533834,
-      name: '流沙',
+      id: 150432,
+      name: '爱我还是他',
       ar: [{ name: '陶喆' }]
     }
   ])
+  const pushPlay_List = (value) => {
+    play_List.value.push(value)
+  }
+  const updatePlay_List = (value) => {
+    play_List.value = value
+    console.log(play_List.value)
+  }
 
   //播放下标
   const playListIndex = ref(0)
+  const updatePlayListIndex = (value) => {
+    playListIndex.value = value
+  }
 
   //当前时间
   const currentTime = ref(0)
@@ -49,7 +59,10 @@ export const usePlayStore = defineStore('play', () => {
 
   return {
     play_List,
+    pushPlay_List,
+    updatePlay_List,
     playListIndex,
+    updatePlayListIndex,
     currentTime,
     updateCurrentTime,
     isbtnShow,

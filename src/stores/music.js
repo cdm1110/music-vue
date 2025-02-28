@@ -13,10 +13,17 @@ export const useMusicStore = defineStore(
       lyric_change.value = !lyric_change.value
     }
 
+    //歌单名称（便于播放页展示）
+    const ListName = ref('')
+    const setListName = (value) => {
+      ListName.value = value
+    }
     return {
       lyric_change,
       setlyric_change,
-      updatelyric_change
+      updatelyric_change,
+      ListName,
+      setListName
     }
   },
   {

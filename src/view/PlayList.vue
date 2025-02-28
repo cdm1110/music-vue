@@ -1,7 +1,7 @@
 <template>
   <PlayTopNav></PlayTopNav>
-  <PlayTitle :id="id" @playname="getPlayname"></PlayTitle>
-  <PlayMusic :MusicList="MusicList" :title="title"></PlayMusic>
+  <PlayTitle :id="id"></PlayTitle>
+  <PlayMusic :MusicList="MusicList"></PlayMusic>
 </template>
 
 <script setup>
@@ -24,12 +24,12 @@ onMounted(() => {
   updateFooterShow(true)
 })
 
-//从子组件获取歌单标题
-const title = ref('')
-const getPlayname = (name) => {
-  //console.log(name)
-  title.value = name
-}
+// //从子组件获取歌单标题
+// const title = ref('')
+// const getPlayname = (name) => {
+//   //console.log(name)
+//   title.value = name
+// }
 
 //获取歌单的歌曲列表
 import { getMusicListData } from '@/api/playlist'

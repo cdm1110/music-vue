@@ -33,10 +33,12 @@
 </template>
 
 <script setup>
-import { usePlayStore } from '@/stores'
-import { storeToRefs } from 'pinia'
 import { onUpdated, ref, watch } from 'vue'
 //播放仓库解构
+import { useMusicStore, usePlayStore } from '@/stores'
+import { storeToRefs } from 'pinia'
+import router from '@/router'
+const MusicStore = useMusicStore()
 const PlayStore = usePlayStore()
 const { changeIsbtnShow, updateCurrentTime, addDuration } = PlayStore
 const { play_List, playListIndex, isbtnShow } = storeToRefs(PlayStore)
@@ -44,7 +46,7 @@ const { play_List, playListIndex, isbtnShow } = storeToRefs(PlayStore)
 const audio = ref()
 //更新总时间
 const getDuration = () => {
-  console.log(audio.value.duration)
+  //console.log(audio.value.duration)
   addDuration(audio.value.duration)
 }
 onUpdated(() => {
@@ -76,6 +78,21 @@ watch(isbtnShow, (newValue) => {
     clearInterval(Time)
   }
 })
+
+const ToMusic = () => {
+  //保证进入播放页时是磁盘界面
+  MusicStore.setlyric_change(false)
+  //路由传参
+  router.push({
+    path: '/music',
+    name: 'music',
+    query: {
+      id: play_List.value[playListIndex.value].id
+    }
+  })
+  //更新播放按钮
+  changeIsbtnShow(false)
+}
 </script>
 
 <style lang="less" scoped>

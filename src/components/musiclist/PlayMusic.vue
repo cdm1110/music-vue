@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <div class="nav bgc">
+    <div class="nav bgc" @click="ToMusic(MusicList[0].id, 0)">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-bofang1-copy"></use>
       </svg>
@@ -8,7 +8,7 @@
     </div>
     <div class="musiclist bgc">
       <div class="musicItem" v-for="(item, index) in MusicList" :key="index">
-        <div class="ItemLeft" @click="ToMusic(item.id)">
+        <div class="ItemLeft" @click="ToMusic(item.id, index)">
           <span class="musicIndex">{{ index + 1 }}</span>
           <div class="musicContent">
             <div class="musicname">
@@ -29,6 +29,21 @@
           </svg>
         </div>
       </div>
+      <div class="musicItem clone">
+        <div class="ItemLeft">
+          <span class="musicIndex"></span>
+          <div class="musicContent">
+            <div class="musicname"></div>
+            <div class="musicar">
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+        <div class="ItemRight">
+          <!-- 需要注册点击事件 -->
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -38,19 +53,18 @@ import router from '@/router'
 //导入music仓库
 import { useMusicStore } from '@/stores'
 const MusicStore = useMusicStore()
+import { usePlayStore } from '@/stores'
+const PlayStore = usePlayStore()
+const { updatePlay_List, updatePlayListIndex, changeIsbtnShow } = PlayStore
 
 const props = defineProps({
   MusicList: {
     type: Array,
     required: true
-  },
-  title: {
-    type: String,
-    required: true
   }
 })
 
-const ToMusic = (data) => {
+const ToMusic = (data, index) => {
   //保证进入播放页时是磁盘界面
   MusicStore.setlyric_change(false)
   //路由传参
@@ -58,10 +72,13 @@ const ToMusic = (data) => {
     path: '/music',
     name: 'music',
     query: {
-      id: data,
-      title: props.title
+      id: data
     }
   })
+  //更新播放列表
+  updatePlay_List(props.MusicList)
+  updatePlayListIndex(index)
+  changeIsbtnShow(false)
 }
 </script>
 

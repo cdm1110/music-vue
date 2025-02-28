@@ -23,4 +23,12 @@ const router = createRouter({
   ]
 })
 
+/** 解决跳转重复路由报错问题 */
+// const originalPush = router.push
+// router.push = (to) => {
+//   // 判断当前路由是否就是要跳转的路由
+//   if (router.currentRoute.value.fullPath === to) return
+//   return originalPush.call(router, to)
+// }
+
 export default router

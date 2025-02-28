@@ -7,12 +7,12 @@
       :title="title"
     ></ShowContent>
     <ShowLyric v-else :id="id" :title="MusicContent.title"></ShowLyric>
-    <ShowBottom></ShowBottom>
+    <ShowBottom :title="title"></ShowBottom>
   </div>
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router'
+import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 import { onMounted, ref } from 'vue'
 
 //导入music仓库
@@ -31,11 +31,13 @@ onMounted(() => {
 import ShowContent from '@/components/musicshow/ShowContent.vue'
 import ShowLyric from '@/components/musicshow/ShowLyric..vue'
 import ShowBottom from '@/components/musicshow/ShowBottom.vue'
+import { getMusicContentData } from '@/api/musicshow'
 
-//获取歌曲id和所属歌单标题
-const id = useRoute().query.id
-const title = useRoute().query.title
-
+// //获取歌曲id和所属歌单标题
+// const id = useRoute().query.id
+// const title = useRoute().query.title
+const id = ref()
+const title = MusicStore.ListName
 //获取歌曲url和相关参数
 // import { getMusicShowData } from '@/api/musicshow'
 // const getMusicShow = async () => {
@@ -44,8 +46,19 @@ const title = useRoute().query.title
 // }
 // getMusicShow()
 
-//获取歌曲详细内容
-import { getMusicContentData } from '@/api/musicshow'
+// const route = useRoute()
+onMounted(() => {
+  id.value = useRoute().query.id
+  getMusicContent(id.value)
+})
+
+onBeforeRouteUpdate((to, from, next) => {
+  id.value = to.query.id
+  console.log(id.value)
+
+  getMusicContent(id.value)
+  next()
+})
 
 const MusicContent = ref({
   id: '',
@@ -55,8 +68,11 @@ const MusicContent = ref({
   // tns: [] 别名
 })
 const bg = ref('')
-const getMusicContent = async () => {
+//获取歌曲详细内容
+const getMusicContent = async (id) => {
   const res = await getMusicContentData(id)
+  console.log(res)
+
   const a = res.data.songs[0]
   console.log(a)
   MusicContent.value.id = a.id
@@ -70,7 +86,16 @@ const getMusicContent = async () => {
   bg.value = `url(${MusicContent.value.picUrl})`
   //console.log(MusicContent.value)
 }
-getMusicContent()
+// getMusicContent()
+
+// watch(route, () => {
+//   console.log('路由改变了')
+//   getMusicContent()
+// })
+
+// onActivated(() => {
+//   getMusicContent()
+// })
 </script>
 
 <style lang="less" scoped>

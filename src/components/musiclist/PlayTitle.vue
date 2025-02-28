@@ -54,6 +54,9 @@ import { ref } from 'vue'
 import handleCount from '@/utils/count'
 import router from '@/router'
 
+import { useMusicStore } from '@/stores'
+const MusicStore = useMusicStore()
+
 const props = defineProps({
   id: {
     type: String,
@@ -93,7 +96,8 @@ const getPlaylist = async (id) => {
   playlist.value.commentCount = a.commentCount
   playlist.value.collectCount = a.subscribedCount
   //console.log(playlist.value)
-  emit('playname', playlist.value.name)
+  // emit('playname', playlist.value.name)
+  MusicStore.setListName(playlist.value.name)
   //赋值给CommentObject
   CommentObject.value.img = a.coverImgUrl
   CommentObject.value.title = a.name
@@ -101,8 +105,8 @@ const getPlaylist = async (id) => {
 }
 getPlaylist(id)
 
-//传给父组件歌单标题
-const emit = defineEmits(['playname'])
+// //传给父组件歌单标题
+// const emit = defineEmits(['playname'])
 
 //传给评论页的资源
 const CommentObject = ref({

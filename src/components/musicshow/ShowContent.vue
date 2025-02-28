@@ -2,8 +2,19 @@
   <ShowTopNav>{{ title }} </ShowTopNav>
   <div class="showContent">
     <div class="showImg" @click="MusicStore.updatelyric_change()">
-      <img :src="MusicContent.picUrl" />
-      <div class="showIcon"></div>
+      <img
+        :src="MusicContent.picUrl"
+        class="img"
+        :class="{ img_ar_active: isbtnShow, img_ar_pauesd: !isbtnShow }"
+      />
+      <div class="showIcon">
+        <img
+          src="@/assets/needle-ab.png"
+          alt=""
+          class="img_needle"
+          :class="{ img_needle_active: isbtnShow }"
+        />
+      </div>
     </div>
     <div class="showText">
       <div class="name">
@@ -36,9 +47,12 @@ import ShowTopNav from '@/components/musicshow/ShowTopNav.vue'
 import router from '@/router'
 
 //导入music仓库
-import { useMusicStore } from '@/stores'
+import { useMusicStore, usePlayStore } from '@/stores'
+import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 const MusicStore = useMusicStore()
+const PlayMusic = usePlayStore()
+const { isbtnShow } = storeToRefs(PlayMusic)
 
 const props = defineProps({
   title: String,
@@ -74,17 +88,20 @@ const ToComment = () => {
 </script>
 
 <style lang="less" scoped>
+@needle-w: 2rem;
+@needle-h: 3rem;
+
 .showContent {
   width: 100%;
   height: 100%;
   .showImg {
     width: 6rem;
     height: 6rem;
-    margin: 1.3rem auto 0;
+    margin: 1.5rem auto 0;
     background: url('@/assets/cd.png');
     background-size: cover;
     position: relative;
-    img {
+    .img {
       width: 4rem;
       height: 4rem;
       border-radius: 2.5rem;
@@ -94,23 +111,61 @@ const ToComment = () => {
       right: 0;
       bottom: 0;
       margin: auto;
+      animation: rotate_ar 10s linear infinite;
     }
+    //播放封面旋转
+    .img_ar_active {
+      animation-play-state: running;
+    }
+    .img_ar_pauesd {
+      animation-play-state: paused;
+    }
+    @keyframes rotate_ar {
+      0% {
+        transform: rotateZ(0deg);
+      }
+      100% {
+        transform: rotateZ(360deg);
+      }
+    }
+    // .img_needle_active {
+    //   position: absolute;
+    //   left: 46%;
+    //   transform-origin: 0 0;
+    //   transform: rotate(0deg);
+    //   transition: all 2s;
+    // }
     .showIcon {
-      width: 1.6rem;
-      height: 2.65rem;
-      background: url('@/assets/needle-ab.png');
-      background-size: cover;
       position: absolute;
-      top: -1.4rem;
-      left: 1rem;
+      top: -1.55rem;
+      left: 2.6rem;
       right: 0;
       margin: auto;
+      //播放指针旋转
+      .img_needle {
+        width: @needle-w;
+        height: @needle-h;
+        position: absolute;
+        // left: 46%;
+        transform-origin: 0 0;
+        transform: rotate(-30deg);
+        transition: all 1s;
+      }
+      .img_needle_active {
+        width: @needle-w;
+        height: @needle-h;
+        position: absolute;
+        //left: 46%;
+        transform-origin: 0 0;
+        transform: rotate(-4deg);
+        transition: all 1s;
+      }
     }
   }
   .showText {
     width: 100%;
     height: 0.8rem;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
     display: flex;
     justify-content: space-between;
     padding: 0 0.45rem;
