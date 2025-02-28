@@ -38,7 +38,7 @@ git clone https://github.com/cdm1110/music-vue.git
 
 
 #### 5.播放页和歌词页
-| ![播放1](img/bofang1.png) | ![歌词1](img/geci1.png) | | ![播放2](img/bofang2.png) | ![歌词2](img/geci2.png) |
+| ![播放1](img/bofang1.png) | ![歌词1](img/geci1.png) | ![播放2](img/bofang2.png) | ![歌词2](img/geci2.png) |
 |:-|:-|:-|:-|
 
 
