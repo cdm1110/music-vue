@@ -9,7 +9,7 @@
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-yinle"></use>
       </svg>
-      <span>甄选歌单</span>
+      <span>歌单</span>
     </div>
     <div class="search">
       <svg class="icon" aria-hidden="true">
